@@ -24,7 +24,7 @@
 | 第一公開先 | GitHub Pages |
 | 理由 | 静的HTMLで即時公開でき、SNS検証に必要なURLを短時間で確保できる |
 | 現行公開URL | `https://befi735.github.io/open-mercato-japan-lps/` |
-| 注意 | 現在の公開URLは更新前コンテンツを含む可能性があるため、統合LP反映後に再デプロイ確認が必要 |
+| 公開状態 | 統合LPへ再デプロイ済み。公開URL上で新H1、LIFF画面画像、Fulfillment画面画像、実装ログMarkdownの取得を確認済み |
 | 将来移行先 | Vercelまたは独自ドメイン |
 | Vercelの現状 | CLI認証トークンが無効であり、再ログインまたは新規トークンが必要 |
 
