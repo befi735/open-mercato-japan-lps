@@ -21,6 +21,13 @@ The page must explain the unified Japan smartphone MVP: buyer-side LINE LIFF ord
 8. CTAs resolve to local anchors or safe mail links; no broken in-page anchors.
 9. Motion is subtle, non-blocking, and respects `prefers-reduced-motion`.
 10. The app specification section includes interactive local UI state, such as selectable module tabs.
+11. `pricing.html` exists as a standalone pricing page and states the usage fee as monthly JPY 10,000 plus 1% of processed payment amount.
+12. `pricing.html` states that implementation support services require inquiry and are not included in the fixed usage fee unless separately agreed.
+13. `pricing.html` states that user support is provided by email with a response within 48 hours and that responses are generated using generative AI.
+14. `faq.html` exists as a standalone FAQ page and covers pricing, transaction fee basis, implementation support, email support, generative-AI responses, LINE/PayPay/Yamato production prerequisites, and cancellation/contract confirmation.
+15. The header navigation on active public LP pages (`index.html`, `pricing.html`, `faq.html`) links to Home or top page sections, Pricing, FAQ, and Contact without broken local navigation.
+16. Pricing and FAQ copy avoids unsupported legal, tax, official certification, partnership, SLA, or complete-automation claims.
+17. The active public LP copy is written for non-technical users in polite Japanese and avoids unexplained specialist terms such as LIFF, Backend, Provider, API, MVP, and picking in visible body copy.
 
 ## Verification
 
