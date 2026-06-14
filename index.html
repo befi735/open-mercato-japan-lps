@@ -3,55 +3,217 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Open Mercato 日本向け連携アプリ LP</title>
+  <meta name="description" content="Open Mercato JP Mobileは、LINE LIFF注文、PayPay Backend決済、受注者側ピッキング、ヤマト送り状連携をOpen Mercato Backendで接続する日本向けスマホMVPです。">
+  <meta property="og:title" content="Open Mercato JP Mobile | LINE注文から出荷まで">
+  <meta property="og:description" content="購入者のLIFF注文と受注者の出荷作業を、PayPay・ヤマト連携を含むBackend基盤でつなぐ。">
+  <meta property="og:type" content="website">
+  <title>Open Mercato JP Mobile | LINE注文から出荷まで</title>
   <link rel="stylesheet" href="./styles.css">
 </head>
-<body class="site-shell">
-  <nav class="nav">
-    <a class="brand" href="./index.html"><span class="brand-mark">OM</span><span>Open Mercato Apps</span></a>
-    <div class="nav-links">
-      <a href="./line-order.html">LINE注文</a>
-      <a href="./paypay-payment.html">PayPay決済</a>
-      <a href="./yamato-shipping.html">ヤマト配送</a>
-    </div>
-    <a class="button button-primary" href="mailto:hello@example.com?subject=Open%20Mercato%20Apps">相談する</a>
-  </nav>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Open Mercato JP Mobile">
+      <span class="brand-mark">OM</span>
+      <span>
+        <strong>Open Mercato JP Mobile</strong>
+        <small>LIFF / Fulfillment / PayPay / Yamato</small>
+      </span>
+    </a>
+    <nav class="nav-links" aria-label="主要ナビゲーション">
+      <a href="#overview">概要</a>
+      <a href="#flow">運用フロー</a>
+      <a href="#spec">アプリ仕様</a>
+      <a href="#validation">検証</a>
+    </nav>
+    <a class="nav-cta" href="#contact">導入相談</a>
+  </header>
 
-  <main>
+  <main id="top">
     <section class="hero">
-      <div class="container">
-        <div data-animate>
-          <p class="eyebrow">Japan operations suite for Open Mercato</p>
-          <h1>注文、決済、配送を日本市場向けの業務導線へ。</h1>
-          <p class="lead">LINE注文受付、PayPay決済、ヤマト配送連携の3アプリを個別LPとして整理した。各ページはStore掲載文、営業資料、導入相談ページへ転用しやすい構成である。</p>
+      <div class="hero-copy" data-reveal>
+        <p class="context-line">Japan smartphone MVP for Open Mercato</p>
+        <h1><span>LINE注文から、</span><span>PayPay決済、</span><span>ヤマト出荷まで。</span></h1>
+        <p class="hero-lead">
+          購入者のLIFF注文と受注者のピッキング・送り状発行を、Open Mercato Backendで接続する日本向けスマホMVPである。注文、支払い、出荷、ステータス同期を、現場が扱える2つの独立アプリとして整理する。
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#flow">運用フローを見る</a>
+          <a class="button secondary" href="#spec">仕様を確認する</a>
         </div>
-        <div class="grid-3" style="margin-top:34px">
-          <a class="feature-card theme-line" data-animate href="./line-order.html">
-            <span class="num">01</span>
-            <h3>LINE注文受付 for Open Mercato</h3>
-            <p>取引先のLINE注文をOpen Mercatoの受注管理へ接続する。</p>
-          </a>
-          <a class="feature-card theme-paypay" data-animate href="./paypay-payment.html">
-            <span class="num">02</span>
-            <h3>PayPay決済 for Open Mercato</h3>
-            <p>注文ごとの支払導線と決済ステータスを管理する。</p>
-          </a>
-          <a class="feature-card theme-yamato" data-animate href="./yamato-shipping.html">
-            <span class="num">03</span>
-            <h3>ヤマト配送連携 for Open Mercato</h3>
-            <p>出荷対象確認から送り状番号登録までを支援する。</p>
-          </a>
+        <div class="hero-facts" aria-label="システム要点">
+          <div><strong>2 Apps</strong><span>購入者LIFFと受注配送</span></div>
+          <div><strong>2 Providers</strong><span>PayPayとYamatoをBackend化</span></div>
+          <div><strong>Backend Sync</strong><span>Order / Payment / Shipmentを同期</span></div>
+        </div>
+      </div>
+
+      <div class="device-stage" data-reveal>
+        <figure class="phone-shot phone-light">
+          <span class="phone-label">LINE注文LIFF App</span>
+          <img src="./liff-order-blue-light.png" alt="LINE注文LIFF Appの画面。商品選択、配送先入力、配送枠、PayPay支払い合計が表示されている。">
+        </figure>
+        <figure class="phone-shot phone-dark">
+          <span class="phone-label">受注者側 出荷アプリ</span>
+          <img src="./fulfillment-shipping-blue-dark.png" alt="受注者側出荷アプリの画面。注文選択、ピッキングリスト、ヤマト送り状連携が表示されている。">
+        </figure>
+        <div class="sync-card" aria-hidden="true">
+          <span>Open Mercato Backend</span>
+          <strong>Order → Payment → Shipment</strong>
+        </div>
+      </div>
+    </section>
+
+    <section id="overview" class="section overview">
+      <div class="section-head" data-reveal>
+        <p class="context-line">System Overview</p>
+        <h2>2つのスマホアプリと2つのBackend Providerで、日本の受注業務をつなぐ。</h2>
+      </div>
+      <div class="overview-grid">
+        <article class="glass-panel light-panel" data-reveal>
+          <span class="panel-number">01</span>
+          <h3>購入者側: LINE LIFF注文</h3>
+          <p>LINE内または通常ブラウザから商品を選択し、配送先と配送枠を入力し、PayPay支払いへ進む。商品、在庫、価格はBackendから読み込み、注文は`Open Mercato sales/orders`へ登録される。</p>
+        </article>
+        <article class="glass-panel dark-panel" data-reveal>
+          <span class="panel-number">02</span>
+          <h3>受注者側: Fulfillment Shipping</h3>
+          <p>受注キューから注文を選び、全明細のピッキング完了後にヤマト送り状連携へ進む。Shipment作成後は送り状番号と出荷メタデータをBackend注文へ同期する。</p>
+        </article>
+        <article class="glass-panel" data-reveal>
+          <span class="panel-number">03</span>
+          <h3>PayPay Gateway</h3>
+          <p>PayPay資格情報、HMAC署名、Dynamic QRセッション作成はBackend Providerへ閉じ込める。LIFF Appは`/api/paypay-session`を通じて支払いセッションを要求する。</p>
+        </article>
+        <article class="glass-panel" data-reveal>
+          <span class="panel-number">04</span>
+          <h3>Yamato Carrier</h3>
+          <p>ヤマト向けの送り状・追跡番号レコードはShipping Carrier Providerが担う。MVPではラベル作成境界とtracking record flowを検証済みである。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="flow" class="section flow-section">
+      <div class="section-head compact" data-reveal>
+        <p class="context-line">Operation Flow</p>
+        <h2>購入から出荷までの運用フロー</h2>
+        <p>現場運用では、購入者のスマホ操作と受注者の出荷操作を分けることが重要である。その分離により、決済資格情報や配送連携の責務をBackendへ集約しながら、利用者には単純な画面を提供できる。</p>
+      </div>
+      <ol class="flow-list">
+        <li data-reveal><span>1</span><strong>商品選択</strong><p>LIFF注文画面がBackend catalog/productsを読み込み、価格と在庫を表示する。</p></li>
+        <li data-reveal><span>2</span><strong>配送先入力</strong><p>購入者が宛名、住所、電話番号、配送枠をスマホで入力する。</p></li>
+        <li data-reveal><span>3</span><strong>注文作成</strong><p>LIFF Appがsales/ordersとsales/paymentsを作成し、金額はBackend側で確定する。</p></li>
+        <li data-reveal><span>4</span><strong>PayPay決済</strong><p>Backend GatewayがPayPay Dynamic QR支払いセッションを作成する。</p></li>
+        <li data-reveal><span>5</span><strong>受注キュー反映</strong><p>Fulfillment AppがBackend order queueを読み込み、未処理注文を表示する。</p></li>
+        <li data-reveal><span>6</span><strong>ピッキング</strong><p>出荷担当者が明細を確認し、全商品がpickedになるまで出荷作成をブロックする。</p></li>
+        <li data-reveal><span>7</span><strong>ヤマト連携</strong><p>Shipping Carrier ProviderがShipmentを作成し、送り状番号を取得する。</p></li>
+        <li data-reveal><span>8</span><strong>注文同期</strong><p>shipment metadataと任意の発送済みステータスをOpen Mercatoの注文へ反映する。</p></li>
+      </ol>
+    </section>
+
+    <section id="spec" class="section spec-section">
+      <div class="section-head" data-reveal>
+        <p class="context-line">Application Specification</p>
+        <h2>アプリ仕様</h2>
+      </div>
+      <div class="spec-layout">
+        <div class="spec-tabs" role="tablist" aria-label="アプリ仕様タブ" data-reveal>
+          <button class="spec-tab active" type="button" data-tab="liff">LIFF注文</button>
+          <button class="spec-tab" type="button" data-tab="fulfillment">受注配送</button>
+          <button class="spec-tab" type="button" data-tab="payment">PayPay Backend</button>
+          <button class="spec-tab" type="button" data-tab="carrier">Yamato Carrier</button>
+        </div>
+        <div class="spec-panels" data-reveal>
+          <article class="spec-panel active" data-panel="liff">
+            <h3>LINE LIFF注文 App</h3>
+            <p>購入者向けのLight Blue Glass画面である。`NEXT_PUBLIC_LINE_LIFF_ID`が設定されている場合はLINE LIFF SDKを動的に読み込み、未設定時は通常ブラウザのプレビュー注文として動作する。</p>
+            <ul>
+              <li>Backend catalog/productsから商品を取得</li>
+              <li>在庫と価格はサーバー側で計算</li>
+              <li>sales/orders、sales/paymentsを作成</li>
+              <li>PayPay支払いセッション要求をBackendへ転送</li>
+            </ul>
+          </article>
+          <article class="spec-panel" data-panel="fulfillment">
+            <h3>受注者側 Fulfillment Shipping App</h3>
+            <p>受注者・現場スタッフ向けのDark Blue Operations画面である。実注文キューを読み込み、ピッキング、出荷作成、送り状番号反映を1つの現場導線として扱う。</p>
+            <ul>
+              <li>sales/ordersから出荷対象注文を取得</li>
+              <li>全明細pickedまでshipment作成を禁止</li>
+              <li>shipping-carriers/shipmentsへYamato shipment作成を要求</li>
+              <li>shipment metadataをBackend orderへ書き戻し</li>
+            </ul>
+          </article>
+          <article class="spec-panel" data-panel="payment">
+            <h3>PayPay Gateway Provider</h3>
+            <p>PayPay連携はフロントエンドではなくBackend providerへ閉じ込める。これにより、HMAC署名、merchant設定、API資格情報をスマホアプリから分離できる。</p>
+            <ul>
+              <li>PayPay OPA Dynamic QR session作成境界</li>
+              <li>lineItemsを含むPayment Gateway Session API</li>
+              <li>本番利用にはPayPay for Developers資格情報が必要</li>
+              <li>Webhook、IP制限、Provider固有検証の追加余地</li>
+            </ul>
+          </article>
+          <article class="spec-panel" data-panel="carrier">
+            <h3>Yamato Shipping Carrier Provider</h3>
+            <p>ヤマト連携はShipping Carrier provider境界として扱う。MVPではラベル作成、追跡番号、Backend注文同期の流れを検証し、本番では契約/API条件を反映する。</p>
+            <ul>
+              <li>providerKey: yamatoによるShipment作成</li>
+              <li>tracking numberとlabel_created状態の保存</li>
+              <li>出荷済みステータス同期は環境変数で任意設定</li>
+              <li>B2 Cloud/API契約詳細は本番前に確認が必要</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="validation" class="section validation-section">
+      <div class="section-head compact" data-reveal>
+        <p class="context-line">Validated MVP</p>
+        <h2>検証済みの実装範囲</h2>
+        <p>本LPは構想だけでなく、2026年6月14日の実装・検証ログを前提としている。ローカルBackend、独立アプリ、Provider登録、Browser QAまで確認された状態を営業・導入検討用に整理している。</p>
+      </div>
+      <div class="evidence-grid">
+        <div class="evidence-card" data-reveal><strong>Typecheck / Build</strong><span>LIFF注文、受注配送、PayPay Gateway、Yamato Carrierの型検査とビルドを通過。</span></div>
+        <div class="evidence-card" data-reveal><strong>Backend Data</strong><span>実Backend catalog、sales_orders、sales_payments、carrier_shipmentsへの読み書きを確認。</span></div>
+        <div class="evidence-card" data-reveal><strong>Production Browser QA</strong><span>`next start`で3201/3202を起動し、モバイル表示とAPI呼び出しのconsole errorゼロを確認。</span></div>
+        <div class="evidence-card" data-reveal><strong>Blue Glass UI</strong><span>LIFFはAlice Blue、FulfillmentはCool Blackを基調とし、Tufts Blueを共通アクセントとして統一。</span></div>
+      </div>
+    </section>
+
+    <section class="section requirements-section">
+      <div class="requirements-card" data-reveal>
+        <div>
+          <p class="context-line">Production Readiness</p>
+          <h2>本番化に必要な確認</h2>
+          <p>本番運用では、各社の商標・公式表現、契約条件、API資格情報、Webhook、HTTPSエンドポイント登録を確認する必要がある。現時点では、実装境界とMVP検証が完了した段階として位置付ける。</p>
+        </div>
+        <ul>
+          <li>LINE Developers LIFF App IDとHTTPS endpoint登録</li>
+          <li>PayPay production credentials、Webhook、必要なIP制限</li>
+          <li>ヤマト B2 Cloud / API契約条件と資格情報</li>
+          <li>商標、ロゴ、公式連携・認定表現の掲載可否確認</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact" class="section cta-section">
+      <div class="cta-panel" data-reveal>
+        <h2>日本向けスマホ受注・出荷MVPを、Open Mercatoの運用導線へ。</h2>
+        <p>購入者のLINE注文、PayPay支払い、受注者のピッキング、ヤマト出荷連携を、現場が扱える2画面に整理する。導入検討では、既存の商品マスタ、注文ステータス、決済・配送契約の状態から確認することが望ましい。</p>
+        <div class="hero-actions">
+          <a class="button primary inverse" href="mailto:hello@example.com?subject=Open%20Mercato%20JP%20Mobile%20MVP">導入相談を依頼する</a>
+          <a class="button secondary inverse" href="./2026-06-14-liff-fulfillment-paypay-yamato-glass.md">実装ログを見る</a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="container footer-inner">
-      <span>© 2026 Open Mercato App Drafts</span>
-      <span>商標・公式連携表現は掲載前に確認が必要である。</span>
-    </div>
+  <footer class="site-footer">
+    <span>© 2026 Open Mercato JP Mobile MVP</span>
+    <span>LINE、PayPay、ヤマト運輸に関する商標・公式連携表現は、掲載前に利用条件の確認が必要である。</span>
   </footer>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="./app.js"></script>

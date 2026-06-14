@@ -1,27 +1,26 @@
-# Open Mercato Three App Landing Pages Contract
+# Open Mercato JP Mobile Unified Landing Page Contract
 
 ## Goal
 
-Create three separate Japanese landing pages for Open Mercato apps:
+Create a new Japanese landing page from scratch based on `2026-06-14-liff-fulfillment-paypay-yamato-glass.md` and the supplied screen images:
 
-1. LINE注文受付 for Open Mercato
-2. PayPay決済 for Open Mercato
-3. ヤマト配送連携 for Open Mercato
+- `liff-order-blue-light.png`
+- `fulfillment-shipping-blue-dark.png`
 
-The pages must be suitable as first drafts for Store listings, landing pages, and sales material.
+The page must explain the unified Japan smartphone MVP: buyer-side LINE LIFF ordering, backend PayPay payment sessions, recipient-side fulfillment/picking, Yamato shipment creation, and Open Mercato Backend synchronization.
 
 ## Acceptance Criteria
 
-1. Each app has an individual HTML landing page.
-2. A top `index.html` links to all three pages.
-3. The copy reflects the supplied source text without inventing official certification, official partnership, or guaranteed complete automation.
-4. Each page contains: hero, problem, core functions, workflow, benefits, operations/security, recommended targets, and CTA.
-5. The three pages share a professional B2B design system while using distinct app accents.
-6. Pages are responsive and open locally without a build step.
-7. CTAs resolve to local anchors or safe mail links; no broken in-page anchors.
-8. Motion is subtle, non-blocking, and respects `prefers-reduced-motion`.
-9. A public deployment destination is selected and documented.
-10. A concrete SNS marketing WBS is created with phases, owners, outputs, dates, KPIs, and channel-specific tasks.
+1. `index.html` is rebuilt as a single integrated landing page, not a collection of three separate app listing pages.
+2. The first viewport clearly shows the system value proposition and both reference screen images.
+3. The page contains system overview, operation flow, app/module specification, validation evidence, production requirements, and CTA sections.
+4. The visual language follows the blue glass direction: light LIFF ordering and dark fulfillment operations.
+5. The page uses the supplied screen images as real product evidence and does not use placeholder boxes.
+6. The copy avoids unsupported official certification, official partnership, or guaranteed complete automation claims.
+7. The page is responsive and opens locally without a build step.
+8. CTAs resolve to local anchors or safe mail links; no broken in-page anchors.
+9. Motion is subtle, non-blocking, and respects `prefers-reduced-motion`.
+10. The app specification section includes interactive local UI state, such as selectable module tabs.
 
 ## Verification
 

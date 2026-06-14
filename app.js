@@ -1,17 +1,30 @@
 window.addEventListener("DOMContentLoaded", () => {
-  if (!window.gsap) {
-    const animated = document.querySelectorAll("[data-animate]");
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const tabs = Array.from(document.querySelectorAll(".spec-tab"));
+  const panels = Array.from(document.querySelectorAll(".spec-panel"));
 
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const id = tab.dataset.tab;
+      tabs.forEach((item) => item.classList.toggle("active", item === tab));
+      panels.forEach((panel) => {
+        panel.classList.toggle("active", panel.dataset.panel === id);
+      });
+    });
+  });
+
+  const revealTargets = Array.from(document.querySelectorAll("[data-reveal]"));
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (!window.gsap || reduced) {
     if (reduced || !("IntersectionObserver" in window)) {
-      animated.forEach((el) => {
+      revealTargets.forEach((el) => {
         el.style.opacity = "1";
         el.style.transform = "none";
       });
       return;
     }
 
-    animated.forEach((el) => {
+    revealTargets.forEach((el) => {
       el.style.transition = "opacity 620ms ease, transform 620ms ease";
     });
 
@@ -22,60 +35,54 @@ window.addEventListener("DOMContentLoaded", () => {
         entry.target.style.transform = "translateY(0)";
         observer.unobserve(entry.target);
       });
-    }, { threshold: 0.16 });
+    }, { threshold: 0.14 });
 
-    animated.forEach((el) => observer.observe(el));
-
-    const phone = document.querySelector(".phone");
-    if (phone) {
-      phone.animate(
-        [
-          { transform: "translateY(0)" },
-          { transform: "translateY(-10px)" },
-          { transform: "translateY(0)" }
-        ],
-        { duration: 4200, iterations: Infinity, easing: "ease-in-out" }
-      );
-    }
+    revealTargets.forEach((el) => observer.observe(el));
     return;
   }
 
-  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   gsap.registerPlugin(ScrollTrigger);
 
-  if (reduced) {
-    gsap.set("[data-animate]", { opacity: 1, y: 0 });
-    return;
-  }
-
   gsap.timeline({ defaults: { ease: "power3.out" } })
-    .from(".nav", { opacity: 0, y: -18, duration: 0.55 })
-    .to(".hero [data-animate]", { opacity: 1, y: 0, duration: 0.72, stagger: 0.08 }, "-=0.18")
-    .from(".phone", { opacity: 0, y: 44, rotateY: -8, duration: 0.9 }, "-=0.46")
-    .from(".floating-note", { opacity: 0, y: 24, duration: 0.62 }, "-=0.5");
+    .from(".site-header", { opacity: 0, y: -18, duration: 0.58 })
+    .to(".hero [data-reveal]", { opacity: 1, y: 0, duration: 0.78, stagger: 0.12 }, "-=0.2")
+    .from(".phone-light", { opacity: 0, y: 34, rotate: -2, duration: 0.78 }, "-=0.55")
+    .from(".phone-dark", { opacity: 0, y: 48, rotate: 2, duration: 0.82 }, "-=0.62")
+    .from(".sync-card", { opacity: 0, scale: 0.94, duration: 0.62 }, "-=0.44");
 
-  gsap.to(".phone", {
+  gsap.to(".phone-light", {
     y: -18,
-    rotateY: 4,
     scrollTrigger: {
-      trigger: ".phone-stage",
+      trigger: ".device-stage",
       start: "top 20%",
       end: "bottom top",
       scrub: 1.1
     }
   });
 
-  gsap.utils.toArray("section:not(.hero) [data-animate], .footer [data-animate]").forEach((el) => {
-    gsap.to(el, {
-      opacity: 1,
-      y: 0,
-      duration: 0.68,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: el,
-        start: "top 86%",
-        once: true
-      }
-    });
+  gsap.to(".phone-dark", {
+    y: -34,
+    scrollTrigger: {
+      trigger: ".device-stage",
+      start: "top 20%",
+      end: "bottom top",
+      scrub: 1.1
+    }
   });
+
+  revealTargets
+    .filter((el) => !el.closest(".hero"))
+    .forEach((el) => {
+      gsap.to(el, {
+        opacity: 1,
+        y: 0,
+        duration: 0.72,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 84%",
+          once: true
+        }
+      });
+    });
 });
